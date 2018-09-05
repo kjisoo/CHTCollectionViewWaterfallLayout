@@ -56,8 +56,6 @@ public enum CHTCollectionViewWaterfallLayoutItemRenderDirection: Int {
     case chtCollectionViewWaterfallLayoutItemRenderDirectionRightToLeft
 }
 
-public  let CHTCollectionElementKindSectionHeader = "CHTCollectionElementKindSectionHeader"
-public  let CHTCollectionElementKindSectionFooter = "CHTCollectionElementKindSectionFooter"
 public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
     public var columnCount: Int {
         didSet {
@@ -217,7 +215,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
             }
 
             if heightHeader > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionHeader, with: IndexPath(row: 0, section: section))
+                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, with: IndexPath(row: 0, section: section))
                 attributes.frame = CGRect(x: 0, y: top, width: self.collectionView!.bounds.size.width, height: heightHeader)
                 self.headersAttributes[section] = attributes
                 self.allItemAttributes.append(attributes)
@@ -273,7 +271,7 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
             }
 
             if footerHeight > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CHTCollectionElementKindSectionFooter, with: IndexPath(item: 0, section: section))
+                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, with: IndexPath(item: 0, section: section))
                 attributes.frame = CGRect(x: 0, y: top, width: self.collectionView!.bounds.size.width, height: footerHeight)
                 self.footersAttributes[section] = attributes
                 self.allItemAttributes.append(attributes)
@@ -326,9 +324,9 @@ public class CHTCollectionViewWaterfallLayout: UICollectionViewLayout {
 
     override public func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes {
         var attribute: UICollectionViewLayoutAttributes?
-        if elementKind == CHTCollectionElementKindSectionHeader {
+        if elementKind == UICollectionElementKindSectionHeader {
             attribute = self.headersAttributes[indexPath.section]
-        } else if elementKind == CHTCollectionElementKindSectionFooter {
+        } else if elementKind == UICollectionElementKindSectionFooter {
             attribute = self.footersAttributes[indexPath.section]
         }
         guard let returnAttribute = attribute else {
